@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-3">
+        <form action="{% url 'add_category' %}" method="post" class="mb-3">
+            {% csrf_token %}
+            <label class="form-label" for="cat">Category Name</label>
+            <input class="form-control mb-3" type="text" name="category" id="cat">
+            <button class="btn btn-outline-dark ">Add Category -></button>
+        </form>
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="col-9">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Category</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cat in categories %}
+                <tr>
+                    <th scope="row">{{cat.id}}</th>
+                    <td>{{cat.name}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+{% endblock %}

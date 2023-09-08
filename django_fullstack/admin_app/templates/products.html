@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Image</th>
+            <th scope="col">Product</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Category</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <th scope="row">{{product.id}}</th>
+            <td><img src="{% static 'img/' %}{{ product.image }}" height="64"></td>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.category.name}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
